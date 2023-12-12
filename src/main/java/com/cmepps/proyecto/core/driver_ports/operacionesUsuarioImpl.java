@@ -5,11 +5,13 @@ import java.util.List;
 import com.cmepps.proyecto.core.domain.*;
 import com.cmepps.proyecto.core.driven_ports.*;
 import com.cmepps.proyecto.db.driven_adapter.domain.*;
-import com.cmepps.proyecto.db.driven_adapter.jparepository.operacionesBDImpl;
 
 
 public class operacionesUsuarioImpl implements operacionesUsuario{
-	private operacionesBD funcionesBD = new operacionesBDImpl();
+	private operacionesBD funcionesBD;
+	public operacionesUsuarioImpl(operacionesBD funcionesBD) {
+		this.funcionesBD = funcionesBD;
+	}
 	public List<Tarea> listaTareas(){
 		List<Tarea> tareas = new ArrayList<Tarea>();
 		List<TareaBD> tareasBD = funcionesBD.listarTareas();

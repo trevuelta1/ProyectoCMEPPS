@@ -3,8 +3,6 @@ import java.util.List;
 
 import com.cmepps.proyecto.db.driven_adapter.domain.*;
 
-
-//SERVICIOS
 public interface operacionesBD {
 	List<TareaBD> listarTareas();
 	List<TareaBD> buscarTareaPorNombre(String nombre);
