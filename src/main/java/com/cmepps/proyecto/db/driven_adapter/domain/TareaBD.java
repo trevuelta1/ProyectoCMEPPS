@@ -16,6 +16,7 @@ public class TareaBD {
 	private int hours;
 	@Column(name = "priority", nullable = false)
 	private int priority;
+	private DiaBD dia;
 	
 	public TareaBD() {
 		super();
@@ -56,5 +57,12 @@ public class TareaBD {
 	}
 	public void setPriority(int priority) {
 		this.priority = priority;
+	}
+	@ManyToOne(optional = true)
+	public DiaBD getDia() {
+		return dia;
+	}
+	public void setDia(DiaBD dia) {
+		this.dia = dia;
 	}
 }
