@@ -5,6 +5,7 @@ import java.util.List;
 import com.cmepps.proyecto.core.domain.*;
 import com.cmepps.proyecto.core.driven_ports.*;
 import com.cmepps.proyecto.db.driven_adapter.domain.*;
+import com.cmepps.proyecto.db.driven_adapter.jparepository.operacionesBDImpl;
 
 
 public class operacionesUsuarioImpl implements operacionesUsuario{

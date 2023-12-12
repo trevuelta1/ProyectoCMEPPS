@@ -1,11 +1,11 @@
-package com.cmepps.proyecto.core.driven_ports;
+package com.cmepps.proyecto.db.driven_adapter.jparepository;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.*;
 
+import com.cmepps.proyecto.core.driven_ports.operacionesBD;
 import com.cmepps.proyecto.db.driven_adapter.domain.*;
-import com.cmepps.proyecto.db.driven_adapter.jparepository.*;
 
 public class operacionesBDImpl implements operacionesBD {
 	@Autowired
