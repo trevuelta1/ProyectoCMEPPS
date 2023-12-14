@@ -12,5 +12,7 @@ import com.cmepps.proyecto.db.driven_adapter.domain.DiaBD;
 public interface DiaJpaRepository extends JpaRepository<DiaBD, Integer>{
 	List<DiaBD> findAll();
 	@Query("select d from Dia d where d.id = ?1")
-	List<DiaBD> findById(int id);
+	DiaBD findById(int id);
+	DiaBD save(DiaBD dia);
+	void delete(DiaBD dia);
 }

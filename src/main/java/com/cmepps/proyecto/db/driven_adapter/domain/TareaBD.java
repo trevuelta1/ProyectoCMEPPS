@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 @Table(name = "Tarea")
 public class TareaBD {
 	@Id
+	@Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	@Column(name = "name", nullable = false, length = 50)
@@ -16,6 +17,11 @@ public class TareaBD {
 	private int hours;
 	@Column(name = "priority", nullable = false)
 	private int priority;
+	@Column(name = "next", nullable = true)
+	private int next;
+	@Column(name = "previous", nullable = true)
+	private int previous;
+	@ManyToOne(optional = true, cascade = CascadeType.ALL)
 	private DiaBD dia;
 	
 	public TareaBD() {
@@ -58,11 +64,22 @@ public class TareaBD {
 	public void setPriority(int priority) {
 		this.priority = priority;
 	}
-	@ManyToOne(optional = true)
 	public DiaBD getDia() {
 		return dia;
 	}
 	public void setDia(DiaBD dia) {
 		this.dia = dia;
+	}
+	public int getNext() {
+		return next;
+	}
+	public void setNext(int next) {
+		this.next = next;
+	}
+	public int getPrevious() {
+		return previous;
+	}
+	public void setPrevious(int previous) {
+		this.previous = previous;
 	}
 }

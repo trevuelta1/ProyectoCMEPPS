@@ -7,12 +7,16 @@ public class Tarea {
 	private int horas;
 	private int prioridad;
 	private int dia;
+	private Tarea sucesora;
+	private Tarea antecesora;
 	public Tarea(int id, String nombre, String descripcion, int horas, int prioridad) {
 		this.id = id;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.horas = horas;
 		this.prioridad = prioridad;
+		this.setAntecesora(null);
+		this.setSucesora(null);
 	}
 	public int getId() {
 		return id;
@@ -49,5 +53,17 @@ public class Tarea {
 	}
 	public void setDia(int dia) {
 		this.dia = dia;
+	}
+	public Tarea getSucesora() {
+		return sucesora;
+	}
+	public void setSucesora(Tarea sucesora) {
+		this.sucesora = sucesora;
+	}
+	public Tarea getAntecesora() {
+		return antecesora;
+	}
+	public void setAntecesora(Tarea antecesora) {
+		this.antecesora = antecesora;
 	}
 }

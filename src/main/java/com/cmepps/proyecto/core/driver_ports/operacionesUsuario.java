@@ -8,5 +8,11 @@ public interface operacionesUsuario {
 	List<Tarea> listaTareas();
 	List<Tarea> buscarTarea(String nombre);
 	List<Dia> listaDias();
-	List<Dia> buscarDia(int id);
+	Dia buscarDia(int id);
+	Tarea guardaTarea(Tarea t);
+	void eliminaTarea(Tarea t);
+	void modificaTarea(Tarea t);
+	void asignaTareaSucesora(Tarea t, Tarea sucesora);
+	void asignaTareaAntecesora(Tarea t, Tarea antecesora);
+	void asignaDia(Tarea t, Dia d);
 }

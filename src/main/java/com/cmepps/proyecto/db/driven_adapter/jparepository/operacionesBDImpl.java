@@ -18,10 +18,31 @@ public class operacionesBDImpl implements operacionesBD {
 	public List<TareaBD> buscarTareaPorNombre(String nombre){
 		return tareajpa.findByName(nombre);
 	}
+	public TareaBD buscarTareaPorId(int id) {
+		return tareajpa.findById(id);
+	}
 	public List<DiaBD> listarDias(){
 		return diajpa.findAll();
 	}
-	public List<DiaBD> buscarDiaPorId(int id){
+	public DiaBD buscarDiaPorId(int id){
 		return diajpa.findById(id);
+	}
+	public void guardarTarea(TareaBD t) {
+		tareajpa.save(t);
+	}
+	public void eliminarTarea(TareaBD t) {
+		tareajpa.delete(t);
+	}
+	public void modificarTarea(int id, String name, String description, int hours, int priority) {
+		tareajpa.update(id, name, description, hours, priority);
+	}
+	public void asignarSucesora(int id, int idsucesora) {
+		tareajpa.setNext(id, idsucesora);
+	}
+	public void asignarAntecesora(int id, int idantecesora) {
+		tareajpa.setPrevious(id, idantecesora);
+	}
+	public void asignarDia(int id, DiaBD dia) {
+		tareajpa.updateDia(id, dia);
 	}
 }

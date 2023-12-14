@@ -8,7 +8,9 @@ import jakarta.persistence.*;
 @Table(name = "Dia")
 public class DiaBD {
 	@Id
+	@Column(name = "id")
 	private int id;
+	@OneToMany(mappedBy = "dia")
 	private List<TareaBD> tareas;
 	public int getId() {
 		return id;
@@ -16,7 +18,6 @@ public class DiaBD {
 	public void setId(int id) {
 		this.id = id;
 	}
-	@OneToMany(mappedBy = "dia")
 	public List<TareaBD> getTareas() {
 		return tareas;
 	}
