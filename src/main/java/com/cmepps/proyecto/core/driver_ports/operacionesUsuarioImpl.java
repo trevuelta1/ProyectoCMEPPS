@@ -3,11 +3,14 @@ package com.cmepps.proyecto.core.driver_ports;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.cmepps.proyecto.core.domain.*;
 import com.cmepps.proyecto.core.driven_ports.*;
 import com.cmepps.proyecto.db.driven_adapter.domain.*;
 
 public class operacionesUsuarioImpl implements operacionesUsuario {
+
 	private operacionesBD funcionesBD;
 
 	public operacionesUsuarioImpl(operacionesBD funcionesBD) {
