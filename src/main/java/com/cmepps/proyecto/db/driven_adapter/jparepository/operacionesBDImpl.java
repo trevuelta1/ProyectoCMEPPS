@@ -29,6 +29,9 @@ public class operacionesBDImpl implements operacionesBD {
 	public DiaBD buscarDiaPorId(int id){
 		return diajpa.findById(id);
 	}
+	public void guardaDia(DiaBD d) {
+		diajpa.save(d);
+	}
 	public void guardarTarea(TareaBD t) {
 		tareajpa.save(t);
 	}

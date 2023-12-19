@@ -12,10 +12,10 @@ import com.cmepps.proyecto.db.driven_adapter.domain.*;
 
 @Repository
 public interface TareaJpaRepository extends JpaRepository<TareaBD, Integer>{
-	@Query(value = "select t from Tarea t where t.name = ?1", nativeQuery = true)
+	@Query(value = "select * from Tarea t where t.name = ?1", nativeQuery = true)
 	List<TareaBD> findByName(String name);
 	List<TareaBD> findAll();
-	@Query(value = "select t from Tarea t where t.id = ?1", nativeQuery = true)
+	@Query(value = "select * from Tarea t where t.id = ?1", nativeQuery = true)
 	TareaBD findById(int id);
 	TareaBD save(TareaBD t);
 	void delete(TareaBD t);

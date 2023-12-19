@@ -44,6 +44,18 @@ public class operacionesUsuarioImpl implements operacionesUsuario {
 		}
 		return tareas;
 	}
+	
+	public Tarea buscarTareaPorId(int id) {
+		Tarea t = null;
+		TareaBD tbd = funcionesBD.buscarTareaPorId(id);
+		t = new Tarea(tbd.getId(), tbd.getName(), tbd.getDescription(), tbd.getHours(), tbd.getPriority());
+		t.setAntecesora(tbd.getPrevious());
+		t.setSucesora(tbd.getNext());
+		if(tbd.getDia() != null) {
+			t.setDia(tbd.getDia().getId());
+		}
+		return t;
+	}
 
 	public List<Dia> listaDias() {
 		List<Dia> dias = new ArrayList<Dia>();
@@ -112,5 +124,19 @@ public class operacionesUsuarioImpl implements operacionesUsuario {
 		TareaBD tarea = funcionesBD.buscarTareaPorId(t.getId());
 		DiaBD dia = funcionesBD.buscarDiaPorId(d.getId());
 		funcionesBD.asignarDia(tarea.getId(), dia);
+	}
+	
+	public Dia guardaDia(Dia d) {
+		List<TareaBD> tareasbd = new ArrayList<TareaBD>();
+		for(int i = 0; i < d.getTareas().size(); i++) {
+			TareaBD t = funcionesBD.buscarTareaPorId(d.getTareas().get(i).getId());
+			if(t != null) {
+				tareasbd.add(t);
+			}
+		}
+		DiaBD guardar = new DiaBD(d.getId(), tareasbd);
+		funcionesBD.guardaDia(guardar);
+		Dia dia = buscarDia(d.getId());
+		return dia;
 	}
 }

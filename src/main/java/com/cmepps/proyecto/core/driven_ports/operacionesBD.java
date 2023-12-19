@@ -9,6 +9,7 @@ public interface operacionesBD {
 	TareaBD buscarTareaPorId(int id);
 	List<DiaBD> listarDias();
 	DiaBD buscarDiaPorId(int id);
+	void guardaDia(DiaBD d);
 	void guardarTarea(TareaBD t);
 	void eliminarTarea(TareaBD t);
 	void modificarTarea(int id, String name, String description, int hours, int priority);
