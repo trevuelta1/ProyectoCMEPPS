@@ -133,6 +133,10 @@ a {
 	background-color: #a5c9a5;
 	font-size: 36px;
 }
+.working-day{
+	background-color: #ffacaf;
+	font-size: 36px;
+}
 </style>
 </head>
 
@@ -195,7 +199,31 @@ a {
         const firstDay = new Date(year, month, 1);
         const lastDay = new Date(year, month + 1, 0);
         const daysInMonth = lastDay.getDate();
-        const startingDay = firstDay.getDay();
+        const startingDay = firstDay.getDay(); 
+        <% 
+        	List<Dia> workingDays = (List<Dia>) request.getAttribute("diasCreados");
+        
+        	out.print("const workingDays = ");
+        	if(workingDays.isEmpty()){
+        		out.println("[];");
+        	}else{
+        		out.print("[");
+        		for(int i = 0;i < workingDays.size();i++){	
+        			if(i == 0){
+        				//Si es el primer dÌa:
+       					out.print((""+workingDays.get(i).getId()).substring(0, 2));
+        			}else if(i == workingDays.size() - 1){
+        				//Si es el ˙ltimo dÌa:
+        				out.print(", "+(""+workingDays.get(i).getId()).substring(0, 2));
+        			}else{
+        				//Si es otro dÌa:
+        				out.print(", "+(""+workingDays.get(i).getId()).substring(0, 2));
+        			}
+        		}
+        		out.println("];");
+        	}
+        
+     	%>
 
         tbody.innerHTML = '';
 
@@ -224,6 +252,10 @@ a {
               // A√±adir la clase 'current-day' si es el d√≠a actual
               if (day === new Date().getDate() && month === new Date().getMonth() && year === new Date().getFullYear()) {
                 cell.classList.add('current-day');
+              }
+              
+              if(workingDays.includes(day)){
+            	  cell.classList.add('working-day');
               }
 
               row.appendChild(cell);
