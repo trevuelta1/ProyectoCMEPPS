@@ -55,30 +55,31 @@ public class Controlador {
 	}
 	@PostMapping("/eliminar")
 	public String eliminatareas(HttpServletRequest request, HttpServletResponse response) {
-		String nombre, descripcion;
-		int id, horas, prioridad;
-		id = Integer.parseInt(request.getParameter("id"));
-		nombre = request.getParameter("nombre");
-		descripcion = request.getParameter("descripcion");
-		horas = Integer.parseInt(request.getParameter("horas"));
-		prioridad = Integer.parseInt(request.getParameter("prioridad"));
-		Tarea t = new Tarea(id, nombre, descripcion, horas, prioridad);
+		int id;
+		id = Integer.parseInt(request.getParameter("idtarea"));
+		Tarea t = funcionesUsuario.buscarTareaPorId(id);
 		funcionesUsuario.eliminaTarea(t);
 		request.setAttribute("mensaje", "Tarea eliminada correctamente");
 		return "info";
 	}
 	@PostMapping("/modificar")
+	public String modifica(HttpServletRequest request, HttpServletResponse response) {
+		int id = Integer.parseInt(request.getParameter("idtarea"));
+		request.setAttribute("idtarea", id);
+		return "modificatarea";
+	}
+	@PostMapping("/modificarTarea")
 	public String modificatareas(HttpServletRequest request, HttpServletResponse response) {
+		int idt1 = Integer.parseInt(request.getParameter("idtarea"));
 		String nombre, descripcion;
-		int id, horas, prioridad;
-		id = Integer.parseInt(request.getParameter("id"));
+		int horas, prioridad;
 		nombre = request.getParameter("nombre");
 		descripcion = request.getParameter("descripcion");
 		horas = Integer.parseInt(request.getParameter("horas"));
 		prioridad = Integer.parseInt(request.getParameter("prioridad"));
-		Tarea t = new Tarea(id, nombre, descripcion, horas, prioridad);
+		Tarea t = new Tarea(idt1, nombre, descripcion, horas, prioridad);
 		funcionesUsuario.modificaTarea(t);
-		request.setAttribute("mensaje", "Tarea modificada correctamente");
+		request.setAttribute("mensaje", "Tarea modificada correctamente.");
 		return "info";
 	}
 	@PostMapping("/asignarDia")
@@ -120,5 +121,11 @@ public class Controlador {
 		List<Tarea> tareas = funcionesUsuario.listaTareas();
         request.setAttribute("tareas", tareas);
 		return "planificar";
+	}
+	@GetMapping("/seleccionar")
+	public String seleccionartarea(HttpServletRequest request, HttpServletResponse response) {
+		List<Tarea> tareas = funcionesUsuario.listaTareas();
+        request.setAttribute("tareas", tareas);
+		return "tareasasignar";
 	}
 }

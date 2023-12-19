@@ -1,12 +1,9 @@
-<%@page import="java.util.List"%>
-<%@page import="com.cmepps.proyecto.core.domain.*"%>
 <!DOCTYPE html>
+<%@page import="org.hibernate.internal.build.AllowSysOut"%>
 <html lang="es">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lista de tareas</title>
+<title>Modificar tarea</title>
 <style>
 * {
 	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
@@ -60,6 +57,10 @@ header {
 	
 }
 
+a {
+	text-decoration: none;
+}
+
 .menu-button:hover {
 	box-shadow: 7px 7px 16px #e0e3e6, -7px -7px 16px #ffffff;
 	transform: scale(1.05);
@@ -103,75 +104,70 @@ header {
 	align-items: center;
 }
 
-a {
-	text-decoration: none;
-}
-
-.container {
-	text-align: center;
-}
-
-.tarea {
-	background-color: darkcyan;
-	width: 40rem;
-	margin-left: auto;
-	margin-right: auto;
+.item {
 	display: flex;
-	margin-bottom: 1rem;
-	border-radius: 1rem;
+	margin-top: 20px;
 }
 
-.datos {
-	text-align: left;
-	width: 30rem;
-	margin-left: 3rem;
-	color: white;
+.item label{
+  display: inline-block;
+  width: 200px;
 }
 
-.botones {
-	text-align: right;
+
+.item p {
+	width: 150px;
+}
+
+.item input {
 	display: flex;
-	justify-content: center;
+	justify-content: flex-end;
+	border: none;
+	border-bottom: 1px solid black;
+	width: 600px;
+}
+
+.item textarea {
+	display: flex;
+	justify-content: flex-end;
+	width: 600px;
+}
+
+#right {
+	height: 100%;
+	margin-left: 5%;
+}
+
+#links {
+	height: 70%;
+	display: flex;
 	align-items: center;
-	flex-direction: column;
 }
 
-#modificarButton {
-	margin-bottom: 1rem;
-	border: none;
-	cursor: pointer;
-	color: white;
-	font-weight: bold;
-	border-radius: 100px;
+#buttons {
+	height: 30%;
+	display: flex;
+	align-items: center;
+}
+
+.task-buttons {
+	width: 100px;
+	height: 40px;
 	background-color: darkseagreen;
-	width: 100px;
-	height: 40px;
-}
-
-#eliminarButton {
 	border: none;
 	cursor: pointer;
 	color: white;
 	font-weight: bold;
 	border-radius: 100px;
-	background-color: crimson;
-	width: 100px;
-	height: 40px;
-}
-
-#tareas-scroll {
-	overflow-y: auto;
-}
-
-* {
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-		Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-		sans-serif;
+	margin-right: 10px;
 }
 </style>
 </head>
 
 <body>
+	<%
+		Integer idt = Integer.parseInt(request.getAttribute("idtarea").toString());
+	%>
 	<div id="container">
 		<header></header>
 		<div id="main-container">
@@ -203,37 +199,41 @@ a {
 				</div>
 			</div>
 			<div id="view-container">
-				<h1>Lista de tareas</h1>
-				<div id="tareas-scroll">
-					<% List<Tarea> tareas = (List<Tarea>) request.getAttribute("tareas");
-							if(tareas != null){
-									for(Tarea t : tareas){
-										out.println("<div class=\"tarea\">");
-										out.println("<div class=\"datos\">");
-										out.println("<h2>"+t.getNombre()+"</h2>");
-										out.println("<p>"+t.getDescripcion()+"</p>");
-										out.println("<p>"+"Horas estimadas: "+t.getHoras()+"</p>");
-										out.println("<p>"+"Prioridad: "+t.getPrioridad()+"</p>");
-										out.println("</div>");
-										out.println("<div class=\"botones\">");
-										out.println("<form action=\"/modificar\" method=\"POST\" name=\"datosmod\" id=\"datosmod\">");
-										out.println("<input type=\"hidden\" value=" + t.getId() + " id=\"idtarea\" name=\"idtarea\" />");
-										out.println("<button type=\"submit\" id=\"modificarButton\">Modificar</button>");
-										out.println("</form>");
-										out.println("<form action=\"/eliminar\" method=\"POST\" name=\"datoseli\" id=\"datoseli\">");
-										out.println("<input type=\"hidden\" value=" + t.getId() + " id=\"idtarea\" name=\"idtarea\" />");
-										out.println("<button type=\"submit\" id=\"eliminarButton\">Eliminar</button>");
-										out.println("</form>");
-										out.println("</div>");
-										out.println("</div>");
-									}
-							}
-					%>
+				<h2>Introducir nuevos valores:</h2>
+				<form action="/modificarTarea" method="POST" name="datos" id="datos">
+					<div id="data-container">
+						<div id="left">
+							<div class="item">
+								<label for="nombre"> Nombre: </label> <input id="nombre"
+									type="text" name="nombre" value="" required />
+							</div>
+							<div class="item">
+								<label for="descripcion"> DescripciÛn: </label> <input
+									id="descripcion" type="text" name="descripcion" value="" />
+							</div>
+							<div class="item">
+								<label for="horas"> Horas estimadas: </label> <input id="horas"
+									type="number" name="horas" value="" required />
+							</div>
+							<div class="item">
+								<label for="prioridad"> Prioridad: </label> <input
+									id="prioridad" type="number" name="prioridad" value="" required />
+							</div>
+							<%out.println("<input type=\"hidden\" value=" + idt + " id=\"idtarea\" name=\"idtarea\" />");%>
+						</div>
+				</form>
+				<div id="right">
+					<div id="links">
+						<a href="">Tareas relacionadasè</a>
+					</div>
+					<div id="buttons">
+						<button type="submit" class="task-buttons" id="guardar-button">Modificar</button>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
+	</div>
 </body>
 
 </html>

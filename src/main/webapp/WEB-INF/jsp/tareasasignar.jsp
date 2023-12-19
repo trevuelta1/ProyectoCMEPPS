@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lista de tareas</title>
+<title>Selección de tarea</title>
 <style>
 * {
 	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
@@ -136,7 +136,7 @@ a {
 	flex-direction: column;
 }
 
-#modificarButton {
+#seleccionarButton {
 	margin-bottom: 1rem;
 	border: none;
 	cursor: pointer;
@@ -148,16 +148,6 @@ a {
 	height: 40px;
 }
 
-#eliminarButton {
-	border: none;
-	cursor: pointer;
-	color: white;
-	font-weight: bold;
-	border-radius: 100px;
-	background-color: crimson;
-	width: 100px;
-	height: 40px;
-}
 
 #tareas-scroll {
 	overflow-y: auto;
@@ -203,7 +193,7 @@ a {
 				</div>
 			</div>
 			<div id="view-container">
-				<h1>Lista de tareas</h1>
+				<h1>Selecciona una tarea</h1>
 				<div id="tareas-scroll">
 					<% List<Tarea> tareas = (List<Tarea>) request.getAttribute("tareas");
 							if(tareas != null){
@@ -216,14 +206,7 @@ a {
 										out.println("<p>"+"Prioridad: "+t.getPrioridad()+"</p>");
 										out.println("</div>");
 										out.println("<div class=\"botones\">");
-										out.println("<form action=\"/modificar\" method=\"POST\" name=\"datosmod\" id=\"datosmod\">");
-										out.println("<input type=\"hidden\" value=" + t.getId() + " id=\"idtarea\" name=\"idtarea\" />");
-										out.println("<button type=\"submit\" id=\"modificarButton\">Modificar</button>");
-										out.println("</form>");
-										out.println("<form action=\"/eliminar\" method=\"POST\" name=\"datoseli\" id=\"datoseli\">");
-										out.println("<input type=\"hidden\" value=" + t.getId() + " id=\"idtarea\" name=\"idtarea\" />");
-										out.println("<button type=\"submit\" id=\"eliminarButton\">Eliminar</button>");
-										out.println("</form>");
+										out.println("<button id=\"seleccionarButton\">Seleccionar</button>");
 										out.println("</div>");
 										out.println("</div>");
 									}

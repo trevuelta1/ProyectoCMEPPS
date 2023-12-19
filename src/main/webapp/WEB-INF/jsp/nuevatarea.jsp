@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <%@page import="org.hibernate.internal.build.AllowSysOut"%>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es">
 
 <head>
 <title>Document</title>
@@ -57,6 +57,10 @@ header {
 	
 }
 
+a {
+	text-decoration: none;
+}
+
 .menu-button:hover {
 	box-shadow: 7px 7px 16px #e0e3e6, -7px -7px 16px #ffffff;
 	transform: scale(1.05);
@@ -107,6 +111,11 @@ header {
 
 .item p {
 	width: 150px;
+}
+
+.item label{
+  display: inline-block;
+  width: 200px;
 }
 
 .item input {
@@ -161,7 +170,7 @@ header {
 			<div id="menu-container">
 				<div class="menu-button">
 					<p>
-						<a href="listatareas">Lista de tareas</a>
+						<a href="tareas">Lista de tareas</a>
 					</p>
 					<!--Ejemplo de cÛmo se integrarÌan los enlaces con Springboot.-->
 				</div>
@@ -172,17 +181,17 @@ header {
 				</div>
 				<div class="menu-button">
 					<p>
-						<a href="planificarsemana">Planificar semana</a>
+						<a href="planificarSemana">Planificar semana</a>
 					</p>
 				</div>
 				<div class="menu-button">
 					<p>
-						<a href="calendariotareas">Calendario de tareas</a>
+						<a href="calendario">Calendario de tareas</a>
 					</p>
 				</div>
 				<div id="add-task-container">
 					<button id="add-task-button">
-						<a href="anhadirtareas">AÒadir tarea</a>
+						<a href="registrarTarea">AÒadir tarea</a>
 					</button>
 				</div>
 			</div>
@@ -207,9 +216,6 @@ header {
 								<label for="prioridad"> Prioridad: </label> 
 								<input id="prioridad" type="number" name="prioridad" value="" required />
 							</div>
-							<div class="button">
-								<input type="submit" name="enviar" value="Subir"/>
-							</div>
 						</div>
 				</form>
 				<div id="right">
@@ -217,7 +223,7 @@ header {
 						<a href="">Tareas relacionadasè</a>
 					</div>
 					<div id="buttons">
-						<button class="task-buttons" id="cancelar-button">Cancelar</button>
+						<button type ="submit" class="task-buttons" id="guardar-button">Guardar</button>
 					</div>
 				</div>
 			</div>
