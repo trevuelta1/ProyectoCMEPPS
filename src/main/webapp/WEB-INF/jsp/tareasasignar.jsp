@@ -162,33 +162,31 @@ a {
 </head>
 
 <body>
+	<%
+		int idDia = Integer.parseInt(request.getAttribute("dia").toString());
+	%>
 	<div id="container">
 		<header></header>
 		<div id="main-container">
 			<div id="menu-container">
 				<div class="menu-button">
 					<p>
-						<a href="tareas">Lista de tareas</a>
+						<a href="/tareas">Lista de tareas</a>
 					</p>
 				</div>
 				<div class="menu-button">
 					<p>
-						<a href="relacionartareas">Relacionar tareas</a>
+						<a href="/planificarSemana">Planificar semana</a>
 					</p>
 				</div>
 				<div class="menu-button">
 					<p>
-						<a href="planificarSemana">Planificar semana</a>
-					</p>
-				</div>
-				<div class="menu-button">
-					<p>
-						<a href="calendario">Calendario de tareas</a>
+						<a href="/calendario">Calendario de tareas</a>
 					</p>
 				</div>
 				<div id="add-task-container">
 					<button id="add-task-button">
-						<a href="registrarTarea">Añadir tarea</a>
+						<a href="/registrarTarea">Añadir tarea</a>
 					</button>
 				</div>
 			</div>
@@ -206,7 +204,11 @@ a {
 										out.println("<p>"+"Prioridad: "+t.getPrioridad()+"</p>");
 										out.println("</div>");
 										out.println("<div class=\"botones\">");
-										out.println("<button id=\"seleccionarButton\">Seleccionar</button>");
+										out.println("<form action=\"/asignarDia\" method=\"POST\" name=\"datos\" id=\"datos\">");
+										out.println("<input type=\"hidden\" value=" + idDia + " id=\"iddia\" name=\"iddia\" />");
+										out.println("<input type=\"hidden\" value=" + t.getId() + " id=\"idtarea\" name=\"idtarea\" />");
+										out.println("<button type=\"submit\" id=\"seleccionarButton\">Seleccionar</button>");
+										out.println("</form>");
 										out.println("</div>");
 										out.println("</div>");
 									}

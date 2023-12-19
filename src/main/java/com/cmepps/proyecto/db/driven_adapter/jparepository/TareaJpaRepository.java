@@ -29,6 +29,6 @@ public interface TareaJpaRepository extends JpaRepository<TareaBD, Integer>{
 	@Query(value = "update Tarea set previous = ?2 where id = ?1", nativeQuery = true)
 	void setPrevious(int id, int idprevious);
 	@Modifying
-	@Query(value = "update Tarea set dia = ?2 where id = ?1", nativeQuery = true)
-	void updateDia(int id, DiaBD day);
+	@Query(value = "update Tarea set dia_id = ?2 where id = ?1", nativeQuery = true)
+	void updateDia(int id, int iddia);
 }

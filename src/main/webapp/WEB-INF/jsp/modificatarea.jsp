@@ -166,7 +166,7 @@ a {
 
 <body>
 	<%
-		Integer idt = Integer.parseInt(request.getAttribute("idtarea").toString());
+		int idt = Integer.parseInt(request.getAttribute("idtarea").toString());
 	%>
 	<div id="container">
 		<header></header>
@@ -175,11 +175,6 @@ a {
 				<div class="menu-button">
 					<p>
 						<a href="tareas">Lista de tareas</a>
-					</p>
-				</div>
-				<div class="menu-button">
-					<p>
-						<a href="relacionartareas">Relacionar tareas</a>
 					</p>
 				</div>
 				<div class="menu-button">

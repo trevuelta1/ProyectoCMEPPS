@@ -84,18 +84,15 @@ public class Controlador {
 	}
 	@PostMapping("/asignarDia")
 	public String asignadia(HttpServletRequest request, HttpServletResponse response) {
-		int dia, mes, año, iddia, idtarea;
-		idtarea = Integer.parseInt(request.getParameter("id"));
-		dia = Integer.parseInt(request.getParameter("dia"));
-		mes = Integer.parseInt(request.getParameter("mes"));
-		año = Integer.parseInt(request.getParameter("año"));
-		iddia = año + (mes * 10000) + (dia * 1000000);
+		int iddia, idtarea;
+		idtarea = Integer.parseInt(request.getParameter("idtarea"));
+		iddia = Integer.parseInt(request.getParameter("iddia"));
 		Dia d = funcionesUsuario.buscarDia(iddia);
 		Tarea t = funcionesUsuario.buscarTareaPorId(idtarea);
 		if(d == null) {
 			d = new Dia(iddia, new ArrayList<Tarea>());
-			funcionesUsuario.asignaDia(t, d);
 			funcionesUsuario.guardaDia(d);
+			funcionesUsuario.asignaDia(t, d);
 			diasCreados.add(d);
 		} else {
 			funcionesUsuario.asignaDia(t, d);
@@ -122,10 +119,11 @@ public class Controlador {
         request.setAttribute("tareas", tareas);
 		return "planificar";
 	}
-	@GetMapping("/seleccionar")
-	public String seleccionartarea(HttpServletRequest request, HttpServletResponse response) {
+	@GetMapping("/seleccionar/{idDia}")
+	public String seleccionartarea(HttpServletRequest request, HttpServletResponse response, @PathVariable String idDia) {
 		List<Tarea> tareas = funcionesUsuario.listaTareas();
         request.setAttribute("tareas", tareas);
+        request.setAttribute("dia", idDia);
 		return "tareasasignar";
 	}
 }

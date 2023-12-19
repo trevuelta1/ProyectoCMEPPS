@@ -148,11 +148,6 @@ a {
 				</div>
 				<div class="menu-button">
 					<p>
-						<a href="relacionartareas">Relacionar tareas</a>
-					</p>
-				</div>
-				<div class="menu-button">
-					<p>
 						<a href="planificarSemana">Planificar semana</a>
 					</p>
 				</div>
@@ -230,9 +225,11 @@ a {
 					numeroDia = iterador;
 					iterador++;
 				}
-				var idDia = numeroDia + "-" + fechaActual.getMonth() + "-"
-						+ fechaActual.getFullYear();
-				divDia.innerHTML = numeroDia;
+				var idDia = numeroDia + "" + (fechaActual.getMonth()+1) + "" + fechaActual.getFullYear();
+				
+				//alert(idDia);
+				
+				divDia.innerHTML = "<span>"+"<a href=\"/seleccionar/"+idDia+"\">"+numeroDia+"</a>"+"</span>";
 				divDia.id = idDia;
 			}
 		}

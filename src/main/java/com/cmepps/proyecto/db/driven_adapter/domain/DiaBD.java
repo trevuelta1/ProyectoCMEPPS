@@ -12,6 +12,9 @@ public class DiaBD {
 	private int id;
 	@OneToMany(mappedBy = "dia")
 	private List<TareaBD> tareas;
+	public DiaBD() {
+		super();
+	}
 	public DiaBD(int id, List<TareaBD> tareas) {
 		this.id = id;
 		this.tareas = tareas;

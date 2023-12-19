@@ -185,11 +185,6 @@ a {
 				</div>
 				<div class="menu-button">
 					<p>
-						<a href="relacionartareas">Relacionar tareas</a>
-					</p>
-				</div>
-				<div class="menu-button">
-					<p>
 						<a href="planificarSemana">Planificar semana</a>
 					</p>
 				</div>

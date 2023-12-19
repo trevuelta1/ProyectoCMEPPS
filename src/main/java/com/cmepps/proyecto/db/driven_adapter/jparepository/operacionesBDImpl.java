@@ -53,6 +53,6 @@ public class operacionesBDImpl implements operacionesBD {
 	}
 	@Transactional
 	public void asignarDia(int id, DiaBD dia) {
-		tareajpa.updateDia(id, dia);
+		tareajpa.updateDia(id, dia.getId());
 	}
 }
